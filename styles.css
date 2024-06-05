@@ -95,3 +95,7 @@ body.dark-theme #task-list li button {
   margin-bottom: 20px;
   cursor: pointer;
 }
+
+.setting{
+  display: none;
+}
