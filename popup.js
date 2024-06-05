@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', function () {
   chrome.storage.sync.get(['tasks'], function (result) {
     if (result.tasks) {
       result.tasks.forEach(task => {
-        addTaskToDOM(task);
+        addTaskToDOM(task.text, task.date);
       });
     }
   });
@@ -30,15 +30,16 @@ document.addEventListener('DOMContentLoaded', function () {
   function addTask() {
     const taskText = taskInput.value.trim();
     if (taskText !== '') {
-      addTaskToDOM(taskText);
-      saveTask(taskText);
+      const taskDate = new Date().toLocaleDateString();
+      addTaskToDOM(taskText, taskDate);
+      saveTask(taskText, taskDate);
       taskInput.value = '';
     }
   }
 
-  function addTaskToDOM(taskText) {
+  function addTaskToDOM(taskText, taskDate) {
     const li = document.createElement('li');
-    li.textContent = taskText;
+    li.textContent = `${taskText} (Added on: ${taskDate})`;
     const removeButton = document.createElement('button');
     removeButton.textContent = 'Remove';
     removeButton.addEventListener('click', function () {
@@ -49,22 +50,21 @@ document.addEventListener('DOMContentLoaded', function () {
     taskList.appendChild(li);
   }
 
-  function saveTask(taskText) {
+  function saveTask(taskText, taskDate) {
     chrome.storage.sync.get(['tasks'], function (result) {
       const tasks = result.tasks || [];
-      tasks.push(taskText);
+      tasks.push({ text: taskText, date: taskDate });
       chrome.storage.sync.set({ tasks });
     });
-  }
+}
 
-  function removeTask(taskText) {
+function removeTask(taskText, taskDate) {
     chrome.storage.sync.get(['tasks'], function (result) {
       let tasks = result.tasks || [];
-      tasks = tasks.filter(task => task !== taskText);
+      tasks = tasks.filter(task => task.text !== taskText && task.date !== taskDate);
       chrome.storage.sync.set({ tasks });
     });
-  }
-});
+}
 
 // change theme
 
@@ -101,4 +101,4 @@ chrome.storage.sync.get('theme', function(data) {
       chrome.storage.sync.set({theme: 'light'});
     }
   }
-});
+})});
