@@ -101,4 +101,4 @@ chrome.storage.sync.get('theme', function(data) {
       chrome.storage.sync.set({theme: 'light'});
     }
   }
-});
+})});
