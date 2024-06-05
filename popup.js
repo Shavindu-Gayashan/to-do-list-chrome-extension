@@ -71,21 +71,34 @@ document.addEventListener('DOMContentLoaded', function () {
 document.getElementById('light').addEventListener('click', function() {
   document.body.classList.remove('dark-theme');
   document.body.classList.add('light-theme');
+  chrome.storage.sync.set({theme: 'light'});
 });
 
 document.getElementById('dark').addEventListener('click', function() {
   document.body.classList.remove('light-theme');
   document.body.classList.add('dark-theme');
+  chrome.storage.sync.set({theme: 'dark'});
 });
 
 // set default theme
 
-let isDarkTheme = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-
-if (isDarkTheme) {
-  document.body.classList.remove('light-theme');
-  document.body.classList.add('dark-theme');
-} else {
-  document.body.classList.remove('dark-theme');
-  document.body.classList.add('light-theme');
-}
+chrome.storage.sync.get('theme', function(data) {
+  if (data.theme === 'dark') {
+    document.body.classList.remove('light-theme');
+    document.body.classList.add('dark-theme');
+  } else if (data.theme === 'light') {
+    document.body.classList.remove('dark-theme');
+    document.body.classList.add('light-theme');
+  } else {
+    let isDarkTheme = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    if (isDarkTheme) {
+      document.body.classList.remove('light-theme');
+      document.body.classList.add('dark-theme');
+      chrome.storage.sync.set({theme: 'dark'});
+    } else {
+      document.body.classList.remove('dark-theme');
+      document.body.classList.add('light-theme');
+      chrome.storage.sync.set({theme: 'light'});
+    }
+  }
+});
