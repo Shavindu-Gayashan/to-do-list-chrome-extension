@@ -50,22 +50,21 @@ document.addEventListener('DOMContentLoaded', function () {
     taskList.appendChild(li);
   }
 
-  function saveTask(taskText) {
+  function saveTask(taskText, taskDate) {
     chrome.storage.sync.get(['tasks'], function (result) {
       const tasks = result.tasks || [];
-      tasks.push(taskText);
+      tasks.push({ text: taskText, date: taskDate });
       chrome.storage.sync.set({ tasks });
     });
-  }
+}
 
-  function removeTask(taskText) {
+function removeTask(taskText, taskDate) {
     chrome.storage.sync.get(['tasks'], function (result) {
       let tasks = result.tasks || [];
-      tasks = tasks.filter(task => task !== taskText);
+      tasks = tasks.filter(task => task.text !== taskText && task.date !== taskDate);
       chrome.storage.sync.set({ tasks });
     });
-  }
-});
+}
 
 // change theme
 
