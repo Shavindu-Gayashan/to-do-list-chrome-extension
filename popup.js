@@ -2,6 +2,11 @@ document.addEventListener('DOMContentLoaded', function () {
   const addTaskButton = document.getElementById('add-task');
   const taskInput = document.getElementById('new-task');
   const taskList = document.getElementById('task-list');
+  let date = document.getElementById('date');
+
+  // Get current time
+  let time = new Date().toLocaleDateString();
+  date.textContent = time;
 
   // Load tasks from storage
   chrome.storage.sync.get(['tasks'], function (result) {
@@ -12,12 +17,10 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   });
 
-  // Add task on button click
   addTaskButton.addEventListener('click', function () {
     addTask();
   });
 
-  // Add task on Enter key press
   taskInput.addEventListener('keypress', function (e) {
     if (e.key === 'Enter') {
       addTask();
@@ -62,3 +65,27 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 });
+
+// change theme
+
+document.getElementById('light').addEventListener('click', function() {
+  document.body.classList.remove('dark-theme');
+  document.body.classList.add('light-theme');
+});
+
+document.getElementById('dark').addEventListener('click', function() {
+  document.body.classList.remove('light-theme');
+  document.body.classList.add('dark-theme');
+});
+
+// set default theme
+
+let isDarkTheme = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+if (isDarkTheme) {
+  document.body.classList.remove('light-theme');
+  document.body.classList.add('dark-theme');
+} else {
+  document.body.classList.remove('dark-theme');
+  document.body.classList.add('light-theme');
+}
