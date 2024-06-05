@@ -78,3 +78,14 @@ document.getElementById('dark').addEventListener('click', function() {
   document.body.classList.add('dark-theme');
 });
 
+// set default theme
+
+let isDarkTheme = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+if (isDarkTheme) {
+  document.body.classList.remove('light-theme');
+  document.body.classList.add('dark-theme');
+} else {
+  document.body.classList.remove('dark-theme');
+  document.body.classList.add('light-theme');
+}
