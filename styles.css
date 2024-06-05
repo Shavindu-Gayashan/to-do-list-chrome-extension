@@ -1,52 +1,97 @@
 body {
-    font-family: Arial, sans-serif;
-    width: 300px;
-    padding: 20px;
-  }
-  
-  h1 {
-    text-align: center;
-  }
-  
-  #todo-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  #new-task {
-    width: 80%;
-    padding: 10px;
-    margin-bottom: 10px;
-  }
-  
-  #add-task {
-    padding: 10px;
-    margin-bottom: 20px;
-  }
-  
-  #task-list {
-    list-style-type: none;
-    padding: 0;
-    width: 100%;
-  }
-  
-  #task-list li {
-    background: #f9f9f9;
-    margin-bottom: 10px;
-    padding: 10px;
-    border-radius: 5px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  
-  #task-list li button {
-    background: red;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    padding: 5px 10px;
-    cursor: pointer;
-  }
-  
+  font-family: Arial, sans-serif;
+  width: 300px;
+  padding: 20px;
+  border: 3px solid black;
+}
+
+body.light-theme {
+  background-color: #fff;
+  color: #333;
+  border: 3px solid black;
+}
+
+body.dark-theme {
+  background-color: #333;
+  color: #fff;
+  border: 3px solid rgb(118, 117, 117);
+}
+
+h1 {
+  text-align: center;
+}
+
+#date {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+#todo-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#new-task {
+  width: 80%;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+#add-task {
+  padding: 10px;
+  margin-bottom: 20px;
+}
+
+#task-list {
+  list-style-type: none;
+  padding: 0;
+  width: 100%;
+}
+
+#task-list li {
+  background: #f9f9f9;
+  margin-bottom: 10px;
+  padding: 10px;
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+body.light-theme #task-list li {
+  background: #f9f9f9;
+}
+
+body.dark-theme #task-list li {
+  background: #555;
+}
+
+#task-list li button {
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+body.light-theme #task-list li button {
+  background: red;
+  color: white;
+}
+
+body.dark-theme #task-list li button {
+  background: #ff4d4d;
+  color: white;
+}
+.theme{
+  display: flex;
+  justify-content: center;
+
+}
+
+.theme button{
+  padding: 2px;
+  margin: 2px;
+  margin-bottom: 20px;
+  cursor: pointer;
+}
