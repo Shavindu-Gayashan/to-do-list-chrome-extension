@@ -3,21 +3,35 @@
 <head>
   <title>To-Do List</title>
   <link rel="stylesheet" type="text/css" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 </head>
 <body>
-  <h1>To-Do List</h1>
-  <h3 id="date"></h3>
-  <div id="todo-container">
-    <input type="text" id="new-task" placeholder="Add a new task">
-    <button id="add-task">Add</button>
+  <header>
+    <h1>To-Do List</h1>
+    <h3 id="date"></h3>
+  </header>
+  
+  <main id="todo-container">
+    <div class="input-group">
+      <input type="text" id="new-task" placeholder="Add a new task">
+      <button id="add-task">Add</button>
+    </div>
+    
     <ul id="task-list"></ul>
-    <h6>by shavidu_gayashan</h6>
-  </div>
+    
+    <button class="clear-all" id="clear-all">Clear All Tasks</button>
+  </main>
+  
   <div class="theme">
-    <button id="light">Light</button>
-    <button id="dark">Dark</button>
+    <button id="light" title="Light Theme"><i class="fas fa-sun"></i> Light</button>
+    <button id="dark" title="Dark Theme"><i class="fas fa-moon"></i> Dark</button>
   </div>
+  
+  <footer>
+    <p>by Shavindu Gayashan</p>
+  </footer>
 
   <script src="popup.js"></script>
 </body>
 </html>
+
