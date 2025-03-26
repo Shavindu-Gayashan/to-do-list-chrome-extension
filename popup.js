@@ -58,6 +58,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // Task text
     const taskTextElement = document.createElement('div');
     taskTextElement.textContent = taskText;
+    taskTextElement.title = taskText; // Add tooltip to show full text on hover
     if (completed) {
       taskTextElement.classList.add('completed-task');
     }
